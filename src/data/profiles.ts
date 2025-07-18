@@ -16,6 +16,25 @@ export interface Profile {
   twitter?: string
   skills: string[]
   
+  // Profile Statistics
+  stats: {
+    profileViews: number
+    totalViews: number
+    monthlyViews: number
+    profileCompleteness: number
+    connectionsCount: number
+    endorsements: number
+    profileRank: number
+    joinedDate: string
+    lastActiveDate: string
+    responseRate: number
+    averageResponseTime: string // in hours
+    profileShares: number
+    bookmarks: number
+    searchAppearances: number
+    industryRanking: number
+  }
+  
   personalInfo: {
     birthDate: string
     birthPlace: string
@@ -84,6 +103,24 @@ export const profiles: Profile[] = [
     linkedin: 'https://linkedin.com/in/sarahchen',
     twitter: 'https://twitter.com/sarahchen_ai',
     skills: ['Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Python', 'TensorFlow', 'Research', 'AI Ethics'],
+    
+    stats: {
+      profileViews: 15420,
+      totalViews: 89340,
+      monthlyViews: 3240,
+      profileCompleteness: 95,
+      connectionsCount: 1247,
+      endorsements: 89,
+      profileRank: 12,
+      joinedDate: '2019-03-15',
+      lastActiveDate: '2024-01-15',
+      responseRate: 92,
+      averageResponseTime: '4.2',
+      profileShares: 156,
+      bookmarks: 234,
+      searchAppearances: 2840,
+      industryRanking: 8
+    },
     
     personalInfo: {
       birthDate: '1988-03-15',
@@ -201,6 +238,24 @@ export const profiles: Profile[] = [
     twitter: 'https://twitter.com/marcusj_vc',
     skills: ['Entrepreneurship', 'Venture Capital', 'Fintech', 'Strategic Planning', 'Team Building', 'Product Strategy', 'Fundraising'],
     
+    stats: {
+      profileViews: 28750,
+      totalViews: 156890,
+      monthlyViews: 5680,
+      profileCompleteness: 98,
+      connectionsCount: 2834,
+      endorsements: 156,
+      profileRank: 3,
+      joinedDate: '2018-01-20',
+      lastActiveDate: '2024-01-10',
+      responseRate: 88,
+      averageResponseTime: '2.8',
+      profileShares: 342,
+      bookmarks: 567,
+      searchAppearances: 4920,
+      industryRanking: 2
+    },
+    
     personalInfo: {
       birthDate: '1982-07-22',
       birthPlace: 'Chicago, IL, USA',
@@ -309,6 +364,24 @@ export const profiles: Profile[] = [
     website: 'https://elenaclimate.org',
     linkedin: 'https://linkedin.com/in/elenarodriguezclimate',
     skills: ['Climate Science', 'Environmental Policy', 'Data Analysis', 'Research', 'Sustainability', 'Urban Planning', 'Public Speaking'],
+    
+    stats: {
+      profileViews: 8940,
+      totalViews: 42680,
+      monthlyViews: 1850,
+      profileCompleteness: 91,
+      connectionsCount: 687,
+      endorsements: 45,
+      profileRank: 28,
+      joinedDate: '2020-09-12',
+      lastActiveDate: '2024-01-08',
+      responseRate: 95,
+      averageResponseTime: '6.1',
+      profileShares: 78,
+      bookmarks: 134,
+      searchAppearances: 1560,
+      industryRanking: 15
+    },
     
     personalInfo: {
       birthDate: '1985-11-03',
@@ -424,6 +497,24 @@ export const profiles: Profile[] = [
     linkedin: 'https://linkedin.com/in/davidkim-architect',
     skills: ['System Architecture', 'Microservices', 'Cloud Computing', 'Kubernetes', 'Java', 'Python', 'DevOps', 'Scalability'],
     
+    stats: {
+      profileViews: 12340,
+      totalViews: 67890,
+      monthlyViews: 2450,
+      profileCompleteness: 88,
+      connectionsCount: 934,
+      endorsements: 67,
+      profileRank: 19,
+      joinedDate: '2019-11-08',
+      lastActiveDate: '2024-01-12',
+      responseRate: 89,
+      averageResponseTime: '5.7',
+      profileShares: 98,
+      bookmarks: 187,
+      searchAppearances: 2180,
+      industryRanking: 12
+    },
+    
     personalInfo: {
       birthDate: '1986-09-12',
       birthPlace: 'Busan, South Korea',
@@ -532,6 +623,24 @@ export const profiles: Profile[] = [
     website: 'https://amaraokafor.com',
     linkedin: 'https://linkedin.com/in/dr-amara-okafor',
     skills: ['Neurosurgery', 'Medical Research', 'Minimally Invasive Surgery', 'Brain Tumor Surgery', 'Medical Education', 'Clinical Trials'],
+    
+    stats: {
+      profileViews: 34560,
+      totalViews: 198750,
+      monthlyViews: 6890,
+      profileCompleteness: 97,
+      connectionsCount: 3456,
+      endorsements: 234,
+      profileRank: 1,
+      joinedDate: '2017-05-14',
+      lastActiveDate: '2024-01-05',
+      responseRate: 94,
+      averageResponseTime: '3.4',
+      profileShares: 456,
+      bookmarks: 789,
+      searchAppearances: 5670,
+      industryRanking: 1
+    },
     
     personalInfo: {
       birthDate: '1978-04-18',

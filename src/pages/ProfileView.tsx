@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
-import { MapPin, Calendar, ExternalLink, Shield, Star, Flag, Edit, Mail, Phone, Globe, Linkedin, Twitter, User, Briefcase, GraduationCap, Award, Heart, Home, Users, BookOpen, Camera, Music, Plane, Coffee } from 'lucide-react'
+import { MapPin, Calendar, ExternalLink, Shield, Star, Flag, Edit, Mail, Phone, Globe, Linkedin, Twitter, User, Briefcase, GraduationCap, Award, Heart, Home, Users, BookOpen, Camera, Music, Plane, Coffee, Eye, TrendingUp, UserCheck, MessageCircle, Share2, Bookmark, Search, Trophy, Clock, Target, BarChart3, Activity, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -46,6 +46,7 @@ export default function ProfileView() {
 
   const sidebarSections = [
     { id: 'about', label: 'About', icon: User },
+    { id: 'stats', label: 'Statistics', icon: BarChart3 },
     { id: 'career', label: 'Career', icon: Briefcase },
     { id: 'education', label: 'Education', icon: GraduationCap },
     { id: 'achievements', label: 'Achievements', icon: Award },
@@ -114,6 +115,28 @@ export default function ProfileView() {
                             <p key={index} className="text-xs">{lang}</p>
                           ))}
                         </div>
+                      </div>
+                    </div>
+                    
+                    <Separator className="my-4" />
+                    
+                    {/* Quick Stats */}
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Profile Views:</span>
+                        <span className="font-medium">{profile.stats.profileViews.toLocaleString()}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Global Rank:</span>
+                        <span className="font-medium">#{profile.stats.profileRank}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Connections:</span>
+                        <span className="font-medium">{profile.stats.connectionsCount.toLocaleString()}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Response Rate:</span>
+                        <span className="font-medium">{profile.stats.responseRate}%</span>
                       </div>
                     </div>
                     
@@ -465,6 +488,291 @@ export default function ProfileView() {
                             <Calendar className="h-4 w-4" />
                             Last updated: {new Date(profile.lastUpdated).toLocaleDateString()}
                           </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
+                
+                {/* Statistics Section */}
+                {activeSection === 'stats' && (
+                  <div>
+                    <h1 className="text-4xl font-bold mb-6">Profile Statistics</h1>
+                    
+                    {/* Overview Stats */}
+                    <Card className="mb-6">
+                      <CardHeader>
+                        <CardTitle className="text-2xl flex items-center gap-2">
+                          <Eye className="h-6 w-6 text-primary" />
+                          Profile Overview
+                        </CardTitle>
+                        <CardDescription>
+                          Key metrics and engagement data for this profile
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                          <div className="text-center p-4 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900">
+                            <Eye className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+                            <div className="text-2xl font-bold text-blue-700 dark:text-blue-300">{profile.stats.profileViews.toLocaleString()}</div>
+                            <div className="text-sm text-blue-600 dark:text-blue-400">Profile Views</div>
+                          </div>
+                          
+                          <div className="text-center p-4 rounded-lg bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
+                            <TrendingUp className="h-8 w-8 text-green-600 mx-auto mb-2" />
+                            <div className="text-2xl font-bold text-green-700 dark:text-green-300">{profile.stats.monthlyViews.toLocaleString()}</div>
+                            <div className="text-sm text-green-600 dark:text-green-400">Monthly Views</div>
+                          </div>
+                          
+                          <div className="text-center p-4 rounded-lg bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900">
+                            <UserCheck className="h-8 w-8 text-purple-600 mx-auto mb-2" />
+                            <div className="text-2xl font-bold text-purple-700 dark:text-purple-300">{profile.stats.connectionsCount.toLocaleString()}</div>
+                            <div className="text-sm text-purple-600 dark:text-purple-400">Connections</div>
+                          </div>
+                          
+                          <div className="text-center p-4 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950 dark:to-orange-900">
+                            <Trophy className="h-8 w-8 text-orange-600 mx-auto mb-2" />
+                            <div className="text-2xl font-bold text-orange-700 dark:text-orange-300">#{profile.stats.profileRank}</div>
+                            <div className="text-sm text-orange-600 dark:text-orange-400">Global Rank</div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    
+                    {/* Engagement Metrics */}
+                    <Card className="mb-6">
+                      <CardHeader>
+                        <CardTitle className="text-2xl flex items-center gap-2">
+                          <Activity className="h-6 w-6 text-primary" />
+                          Engagement Metrics
+                        </CardTitle>
+                        <CardDescription>
+                          How users interact with this profile
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          <div className="space-y-4">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <Share2 className="h-5 w-5 text-muted-foreground" />
+                                <span className="font-medium">Profile Shares</span>
+                              </div>
+                              <span className="text-2xl font-bold text-primary">{profile.stats.profileShares}</span>
+                            </div>
+                            
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <Bookmark className="h-5 w-5 text-muted-foreground" />
+                                <span className="font-medium">Bookmarks</span>
+                              </div>
+                              <span className="text-2xl font-bold text-primary">{profile.stats.bookmarks}</span>
+                            </div>
+                            
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <Search className="h-5 w-5 text-muted-foreground" />
+                                <span className="font-medium">Search Appearances</span>
+                              </div>
+                              <span className="text-2xl font-bold text-primary">{profile.stats.searchAppearances.toLocaleString()}</span>
+                            </div>
+                          </div>
+                          
+                          <div className="space-y-4">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <MessageCircle className="h-5 w-5 text-muted-foreground" />
+                                <span className="font-medium">Response Rate</span>
+                              </div>
+                              <span className="text-2xl font-bold text-primary">{profile.stats.responseRate}%</span>
+                            </div>
+                            
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <Clock className="h-5 w-5 text-muted-foreground" />
+                                <span className="font-medium">Avg Response Time</span>
+                              </div>
+                              <span className="text-2xl font-bold text-primary">{profile.stats.averageResponseTime}h</span>
+                            </div>
+                            
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <Star className="h-5 w-5 text-muted-foreground" />
+                                <span className="font-medium">Endorsements</span>
+                              </div>
+                              <span className="text-2xl font-bold text-primary">{profile.stats.endorsements}</span>
+                            </div>
+                          </div>
+                          
+                          <div className="space-y-4">
+                            <div className="p-4 rounded-lg bg-muted">
+                              <div className="flex items-center gap-2 mb-2">
+                                <Target className="h-5 w-5 text-primary" />
+                                <span className="font-medium">Profile Completeness</span>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <div className="flex-1 bg-background rounded-full h-2">
+                                  <div 
+                                    className="bg-primary h-2 rounded-full transition-all duration-300" 
+                                    style={{ width: `${profile.stats.profileCompleteness}%` }}
+                                  ></div>
+                                </div>
+                                <span className="text-sm font-medium">{profile.stats.profileCompleteness}%</span>
+                              </div>
+                            </div>
+                            
+                            <div className="p-4 rounded-lg bg-muted">
+                              <div className="flex items-center gap-2 mb-2">
+                                <Trophy className="h-5 w-5 text-primary" />
+                                <span className="font-medium">Industry Ranking</span>
+                              </div>
+                              <div className="text-center">
+                                <div className="text-3xl font-bold text-primary">#{profile.stats.industryRanking}</div>
+                                <div className="text-sm text-muted-foreground">in {profile.profession}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    
+                    {/* Activity Timeline */}
+                    <Card className="mb-6">
+                      <CardHeader>
+                        <CardTitle className="text-2xl flex items-center gap-2">
+                          <Calendar className="h-6 w-6 text-primary" />
+                          Activity Timeline
+                        </CardTitle>
+                        <CardDescription>
+                          Key dates and milestones
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-4">
+                            <div className="flex items-center gap-3 p-3 rounded-lg border">
+                              <div className="p-2 rounded-full bg-primary/10">
+                                <Users className="h-4 w-4 text-primary" />
+                              </div>
+                              <div>
+                                <div className="font-medium">Joined Platform</div>
+                                <div className="text-sm text-muted-foreground">
+                                  {new Date(profile.stats.joinedDate).toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                  })}
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="flex items-center gap-3 p-3 rounded-lg border">
+                              <div className="p-2 rounded-full bg-green-100 dark:bg-green-900">
+                                <Activity className="h-4 w-4 text-green-600" />
+                              </div>
+                              <div>
+                                <div className="font-medium">Last Active</div>
+                                <div className="text-sm text-muted-foreground">
+                                  {new Date(profile.stats.lastActiveDate).toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                  })}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="space-y-4">
+                            <div className="flex items-center gap-3 p-3 rounded-lg border">
+                              <div className="p-2 rounded-full bg-blue-100 dark:bg-blue-900">
+                                <Edit className="h-4 w-4 text-blue-600" />
+                              </div>
+                              <div>
+                                <div className="font-medium">Profile Updated</div>
+                                <div className="text-sm text-muted-foreground">
+                                  {new Date(profile.lastUpdated).toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                  })}
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="flex items-center gap-3 p-3 rounded-lg border">
+                              <div className="p-2 rounded-full bg-purple-100 dark:bg-purple-900">
+                                <Zap className="h-4 w-4 text-purple-600" />
+                              </div>
+                              <div>
+                                <div className="font-medium">Platform Experience</div>
+                                <div className="text-sm text-muted-foreground">
+                                  {Math.floor((new Date().getTime() - new Date(profile.stats.joinedDate).getTime()) / (1000 * 60 * 60 * 24 * 365))} years
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    
+                    {/* Performance Insights */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-2xl flex items-center gap-2">
+                          <BarChart3 className="h-6 w-6 text-primary" />
+                          Performance Insights
+                        </CardTitle>
+                        <CardDescription>
+                          Detailed analytics and performance metrics
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          <div className="p-4 rounded-lg border bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-950 dark:to-indigo-900">
+                            <div className="flex items-center justify-between mb-3">
+                              <h4 className="font-semibold text-indigo-700 dark:text-indigo-300">Total Reach</h4>
+                              <Eye className="h-5 w-5 text-indigo-600" />
+                            </div>
+                            <div className="text-2xl font-bold text-indigo-800 dark:text-indigo-200 mb-1">
+                              {profile.stats.totalViews.toLocaleString()}
+                            </div>
+                            <div className="text-sm text-indigo-600 dark:text-indigo-400">
+                              All-time profile views
+                            </div>
+                          </div>
+                          
+                          <div className="p-4 rounded-lg border bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950 dark:to-emerald-900">
+                            <div className="flex items-center justify-between mb-3">
+                              <h4 className="font-semibold text-emerald-700 dark:text-emerald-300">Engagement Score</h4>
+                              <TrendingUp className="h-5 w-5 text-emerald-600" />
+                            </div>
+                            <div className="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-1">
+                              {Math.round((profile.stats.profileShares + profile.stats.bookmarks + profile.stats.endorsements) / 10)}
+                            </div>
+                            <div className="text-sm text-emerald-600 dark:text-emerald-400">
+                              Based on interactions
+                            </div>
+                          </div>
+                          
+                          <div className="p-4 rounded-lg border bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-950 dark:to-amber-900">
+                            <div className="flex items-center justify-between mb-3">
+                              <h4 className="font-semibold text-amber-700 dark:text-amber-300">Visibility Score</h4>
+                              <Search className="h-5 w-5 text-amber-600" />
+                            </div>
+                            <div className="text-2xl font-bold text-amber-800 dark:text-amber-200 mb-1">
+                              {Math.round(profile.stats.searchAppearances / 100)}
+                            </div>
+                            <div className="text-sm text-amber-600 dark:text-amber-400">
+                              Search discoverability
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <Separator className="my-6" />
+                        
+                        <div className="text-center text-sm text-muted-foreground">
+                          <p>Statistics are updated daily and reflect activity over the past 30 days unless otherwise noted.</p>
                         </div>
                       </CardContent>
                     </Card>
